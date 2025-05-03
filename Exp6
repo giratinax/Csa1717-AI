@@ -1,0 +1,36 @@
+def vacuum_world(initial_state):
+    # initial_state: (location, status_A, status_B)
+    # location: 'A' or 'B'
+    # status: 'Dirty' or 'Clean'
+
+    state = list(initial_state)
+    steps = []
+
+    if state[0] == 'A':
+        if state[1] == 'Dirty':
+            steps.append("Cleaning A")
+            state[1] = 'Clean'
+        steps.append("Move to B")
+        if state[2] == 'Dirty':
+            steps.append("Cleaning B")
+            state[2] = 'Clean'
+    else:
+        if state[2] == 'Dirty':
+            steps.append("Cleaning B")
+            state[2] = 'Clean'
+        steps.append("Move to A")
+        if state[1] == 'Dirty':
+            steps.append("Cleaning A")
+            state[1] = 'Clean'
+
+    return steps, tuple(state)
+
+# Example starting from Room A, both rooms dirty
+initial = ('A', 'Dirty', 'Dirty')
+actions, final_state = vacuum_world(initial)
+
+print("Initial State:", initial)
+print("Actions taken:")
+for action in actions:
+    print(" -", action)
+print("Final State:", final_state)
