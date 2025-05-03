@@ -1,0 +1,42 @@
+N = 8  # Size of the chessboard
+
+def print_solution(board):
+    for row in board:
+        print(" ".join("Q" if col else "." for col in row))
+    print()
+
+def is_safe(board, row, col):
+    for i in range(col):
+        if board[row][i]:  # Check this row on the left
+            return False
+
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):  # Upper diagonal
+        if board[i][j]:
+            return False
+
+    for i, j in zip(range(row, N), range(col, -1, -1)):  # Lower diagonal
+        if board[i][j]:
+            return False
+
+    return True
+
+def solve_nqueens(board, col):
+    if col >= N:
+        print_solution(board)
+        return True
+
+    res = False
+    for i in range(N):
+        if is_safe(board, i, col):
+            board[i][col] = 1
+            res = solve_nqueens(board, col + 1) or res
+            board[i][col] = 0  # BACKTRACK
+
+    return res
+
+def solve():
+    board = [[0] * N for _ in range(N)]
+    if not solve_nqueens(board, 0):
+        print("No solution exists.")
+
+solve()
