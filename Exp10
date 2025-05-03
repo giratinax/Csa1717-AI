@@ -1,0 +1,32 @@
+import math
+import random
+
+# Objective function to maximize
+def f(x):
+    return -x**2 + 10*x
+
+def simulated_annealing():
+    current_x = random.uniform(0, 10)
+    current_value = f(current_x)
+    T = 1000  # Initial temperature
+    cooling_rate = 0.003
+
+    while T > 1:
+        # Generate a new neighbor
+        new_x = current_x + random.uniform(-1, 1)
+        new_value = f(new_x)
+
+        # Accept new state based on probability
+        if new_value > current_value:
+            current_x, current_value = new_x, new_value
+        else:
+            prob = math.exp((new_value - current_value) / T)
+            if random.random() < prob:
+                current_x, current_value = new_x, new_value
+
+        T *= (1 - cooling_rate)  # Cool down
+
+    return current_x, current_value
+
+solution, value = simulated_annealing()
+print(f"Best solution: x = {solution:.2f}, f(x) = {value:.2f}")
