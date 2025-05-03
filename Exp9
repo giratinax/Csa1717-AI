@@ -1,0 +1,22 @@
+import random
+
+# Objective function (to maximize)
+def f(x):
+    return -x**2 + 10*x
+
+def hill_climbing():
+    current_x = random.uniform(0, 10)  # Start at a random point
+    step_size = 0.1
+    max_iterations = 1000
+
+    for _ in range(max_iterations):
+        neighbor = current_x + random.choice([-step_size, step_size])
+        if f(neighbor) > f(current_x):
+            current_x = neighbor
+        else:
+            break  # No better neighbor found
+
+    return current_x, f(current_x)
+
+solution, value = hill_climbing()
+print(f"Best solution: x = {solution:.2f}, f(x) = {value:.2f}")
