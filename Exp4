@@ -1,0 +1,32 @@
+import itertools
+
+def solve():
+    # Unique letters in the problem
+    letters = ('S', 'E', 'N', 'D', 'M', 'O', 'R', 'Y')
+    
+    # Digits 0-9
+    digits = range(10)
+
+    # Try all permutations of digits for letters
+    for perm in itertools.permutations(digits, len(letters)):
+        assign = dict(zip(letters, perm))
+
+        # First letters can't be zero
+        if assign['S'] == 0 or assign['M'] == 0:
+            continue
+
+        # Form the numbers
+        send = assign['S'] * 1000 + assign['E'] * 100 + assign['N'] * 10 + assign['D']
+        more = assign['M'] * 1000 + assign['O'] * 100 + assign['R'] * 10 + assign['E']
+        money = assign['M'] * 10000 + assign['O'] * 1000 + assign['N'] * 100 + assign['E'] * 10 + assign['Y']
+
+        if send + more == money:
+            print(f"SEND:  {send}")
+            print(f"MORE:  {more}")
+            print(f"MONEY: {money}")
+            print("Assignment:", assign)
+            return
+
+    print("No solution found.")
+
+solve()
