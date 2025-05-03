@@ -1,0 +1,65 @@
+from collections import deque
+
+# Define the goal state
+goal_state = [[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 0]]
+
+# Directions: up, down, left, right
+moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+def is_goal(state):
+    return state == goal_state
+
+def get_zero_position(state):
+    for i in range(3):
+        for j in range(3):
+            if state[i][j] == 0:
+                return i, j
+
+def get_neighbors(state):
+    neighbors = []
+    x, y = get_zero_position(state)
+
+    for dx, dy in moves:
+        nx, ny = x + dx, y + dy
+        if 0 <= nx < 3 and 0 <= ny < 3:
+            new_state = [row[:] for row in state]
+            new_state[x][y], new_state[nx][ny] = new_state[nx][ny], new_state[x][y]
+            neighbors.append(new_state)
+    return neighbors
+
+def bfs(start):
+    visited = set()
+    queue = deque([(start, [])])
+
+    while queue:
+        state, path = queue.popleft()
+        if is_goal(state):
+            return path + [state]
+
+        state_tuple = tuple(map(tuple, state))
+        if state_tuple in visited:
+            continue
+
+        visited.add(state_tuple)
+        for neighbor in get_neighbors(state):
+            queue.append((neighbor, path + [state]))
+
+    return None
+
+# Example initial state
+initial_state = [[1, 2, 3],
+                 [4, 0, 6],
+                 [7, 5, 8]]
+
+solution = bfs(initial_state)
+
+if solution:
+    print("Solution steps:")
+    for step in solution:
+        for row in step:
+            print(row)
+        print()
+else:
+    print("No solution found.")
