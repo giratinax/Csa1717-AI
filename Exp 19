@@ -1,0 +1,22 @@
+teaches(prof_smith, cs101).
+teaches(prof_jones, cs102).
+teaches(prof_lee, cs103).
+
+enrolled(alice, cs101).
+enrolled(bob, cs102).
+enrolled(charlie, cs101).
+enrolled(david, cs103).
+
+subject(cs101, 'Artificial Intelligence').
+subject(cs102, 'Data Structures').
+subject(cs103, 'Operating Systems').
+
+student_teacher(Student, Teacher) :-
+    enrolled(Student, Code),
+    teaches(Teacher, Code).
+
+?- student_teacher(alice, Teacher).
+Teacher = prof_smith.
+
+?- subject(Code, 'Operating Systems').
+Code = cs103.
