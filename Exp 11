@@ -1,0 +1,33 @@
+neighbors = {
+    'WA': ['NT', 'SA'],
+    'NT': ['WA', 'SA', 'Q'],
+    'SA': ['WA', 'NT', 'Q', 'NSW', 'V'],
+    'Q': ['NT', 'SA', 'NSW'],
+    'NSW': ['Q', 'SA', 'V'],
+    'V': ['SA', 'NSW'],
+    'T': []
+}
+colors = ['Red', 'Green', 'Blue']
+assignment = {}
+def is_valid(region, color):
+    for neighbor in neighbors[region]:
+        if neighbor in assignment and assignment[neighbor] == color:
+            return False
+    return True
+def backtrack(region_list, index=0):
+    if index == len(region_list):
+        return True  # All regions assigned
+    region = region_list[index]
+    for color in colors:
+        if is_valid(region, color):
+            assignment[region] = color
+            if backtrack(region_list, index + 1):
+                return True
+            assignment.pop(region)
+    return False
+regions = list(neighbors.keys())
+if backtrack(regions):
+    for region in assignment:
+        print(f"{region}: {assignment[region]}")
+else:
+    print("No solution found.")
