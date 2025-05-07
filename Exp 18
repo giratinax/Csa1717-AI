@@ -1,0 +1,10 @@
+dob(john, '1990-01-15').
+dob(mary, '1985-06-23').
+dob(alex, '2000-12-09').
+dob(sara, '1995-03-30').
+
+?- dob(john, Date).
+Date = '1990-01-15'.
+
+?- dob(Name, '1985-06-23').
+Name = mary.
