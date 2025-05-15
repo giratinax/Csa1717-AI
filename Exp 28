@@ -1,0 +1,13 @@
+Code:
+has_symptom(fever).
+has_symptom(cough).
+has_symptom(body_pain).
+
+disease(flu) :- has_symptom(fever), has_symptom(cough), has_symptom(body_pain).
+
+diagnose :- disease(D), write('You may have: '), write(D).
+
+
+Output:
+?- diagnose.
+You may have: flu
