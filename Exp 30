@@ -1,0 +1,10 @@
+Code:
+knows(john, rain).
+knows(john, carry_umbrella).
+
+prepare(john) :- knows(john, rain), knows(john, carry_umbrella).
+
+
+Output:
+?- prepare(john).
+true.
