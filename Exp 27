@@ -1,0 +1,27 @@
+Code:
+h(a, 3).
+h(b, 1).
+h(c, 2).
+h(d, 0).
+
+edge(a, b).
+edge(a, c).
+edge(b, d).
+edge(c, d).
+
+best_first(Start, Goal) :-
+    h(Start, _),
+    travel(Start, Goal, [Start]).
+
+travel(Node, Node, Path) :-
+    write('Path: '), write(Path), nl.
+
+travel(Current, Goal, Visited) :-
+    edge(Current, Next),
+    \+ member(Next, Visited),
+    travel(Next, Goal, [Next | Visited]).
+
+
+Output:
+?- best_first(a, d).
+Path: [d, b, a]
