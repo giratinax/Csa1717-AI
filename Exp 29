@@ -1,0 +1,12 @@
+Code:
+fact(sky_is_cloudy).
+fact(humidity_is_high).
+
+fact(it_may_rain) :- fact(sky_is_cloudy), fact(humidity_is_high).
+fact(grab_umbrella) :- fact(it_may_rain).
+
+forward_chain :- fact(grab_umbrella), write('Grab umbrella.').
+
+Output:
+?- forward_chain.
+Grab umbrella.
