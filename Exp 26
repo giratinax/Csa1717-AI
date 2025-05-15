@@ -1,0 +1,9 @@
+fruit(apple, red).
+fruit(banana, yellow).
+fruit(grape, green).
+
+% Query example:
+% ?- fruit(Name, yellow).
+
+Output:
+Name = banana.
