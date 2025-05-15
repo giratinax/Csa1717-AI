@@ -1,0 +1,14 @@
+Code:
+at(monkey, room).
+at(banana, ceiling).
+has(monkey, nothing).
+
+can_reach(monkey, banana) :-
+    at(monkey, room),
+    at(banana, ceiling),
+    write('Monkey can reach banana using box.').
+
+
+Output:
+?- can_reach(monkey, banana).
+Monkey can reach banana using box.
