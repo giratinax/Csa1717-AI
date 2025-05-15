@@ -1,0 +1,12 @@
+Code:
+father(john, mary).
+father(john, david).
+mother(susan, mary).
+mother(susan, david).
+
+parent(X, Y) :- father(X, Y).
+parent(X, Y) :- mother(X, Y).
+
+Output:
+?- parent(john, mary).
+true.
