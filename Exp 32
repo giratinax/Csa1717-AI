@@ -1,0 +1,9 @@
+Code:
+match_list([H|T]) :-
+    write('Head: '), write(H), nl,
+    write('Tail: '), write(T), nl.
+
+Output:
+?- match_list([a, b, c]).
+Head: a
+Tail: [b, c]
