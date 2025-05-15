@@ -1,0 +1,12 @@
+
+% Facts about planets
+planet(mercury, 0.39, 0.33).
+planet(venus, 0.72, 4.87).
+planet(earth, 1.00, 5.97).
+planet(mars, 1.52, 0.642).
+
+% Query example:
+% ?- planet(Name, Distance, Mass).
+
+Name = mercury, Distance = 0.39, Mass = 0.33 ;
+Name = venus, Distance = 0.72, Mass = 4.87 ;
