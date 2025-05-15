@@ -1,0 +1,16 @@
+Code:
+bird(sparrow).
+bird(crow).
+bird(penguin).
+can_fly(sparrow).
+can_fly(crow).
+
+can_it_fly(X) :-
+    can_fly(X), write(X), write(' can fly.').
+
+can_it_fly(X) :-
+    bird(X), \+ can_fly(X), write(X), write(' cannot fly.').
+
+Output:
+?- can_it_fly(penguin).
+penguin cannot fly.
