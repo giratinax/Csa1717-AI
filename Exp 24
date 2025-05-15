@@ -1,0 +1,11 @@
+Code:
+disease(diabetes, low_sugar).
+disease(hypertension, low_salt).
+
+suggest_diet(Disease) :-
+    disease(Disease, Diet),
+    write('Recommended diet: '), write(Diet).
+
+Output:
+?- suggest_diet(diabetes).
+Recommended diet: low_sugar
